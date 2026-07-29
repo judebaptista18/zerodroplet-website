@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1080" viewBox="0 0 1600 1080" role="img" aria-labelledby="title desc">
+  <title id="title">Zero Droplet website solution architecture</title>
+  <desc id="desc">GitHub source control and CI feed AWS Amplify. Visitors reach the Next.js application through Squarespace DNS and the AWS edge. The application integrates with Sanity, Yotpo, GTM and GA4, Resend, OpenAI and CloudWatch.</desc>
+  <defs>
+    <style>
+      .bg{fill:#f7fbfc}.lane{fill:#ffffff;stroke:#c7d8de;stroke-width:2}.box{fill:#ffffff;stroke:#2a6675;stroke-width:2.2;rx:16}.primary{fill:#e3f5f7;stroke:#087f8c;stroke-width:2.5;rx:18}.external{fill:#f6f1ff;stroke:#6650a4;stroke-width:2;rx:16}.obs{fill:#fff8e7;stroke:#a56b00;stroke-width:2;rx:16}.title{font:700 30px Arial,sans-serif;fill:#14343d}.laneTitle{font:700 19px Arial,sans-serif;fill:#315c67}.label{font:700 18px Arial,sans-serif;fill:#14343d}.small{font:400 14px Arial,sans-serif;fill:#315c67}.arrow{stroke:#436f79;stroke-width:3;fill:none;marker-end:url(#m)}.dash{stroke-dasharray:8 7}.edgeLabel{font:600 13px Arial,sans-serif;fill:#436f79}.badge{fill:#087f8c}.badgeText{font:700 13px Arial,sans-serif;fill:#fff}
+    </style>
+    <marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#436f79"/></marker>
+  </defs>
+  <rect class="bg" width="1600" height="1080"/>
+  <text x="60" y="55" class="title">Zero Droplet — Production Architecture</text>
+  <text x="60" y="85" class="small">Next.js App Router • GitHub • AWS Amplify • Sanity • GA4/GTM • CloudWatch • Jest • Playwright</text>
+
+  <rect x="40" y="115" width="1520" height="185" class="lane" rx="22"/>
+  <text x="65" y="150" class="laneTitle">1. Engineering and delivery</text>
+  <rect x="90" y="180" width="190" height="80" class="box"/><text x="185" y="212" text-anchor="middle" class="label">Developers</text><text x="185" y="236" text-anchor="middle" class="small">feature branches</text>
+  <rect x="360" y="180" width="230" height="80" class="primary"/><text x="475" y="210" text-anchor="middle" class="label">GitHub repository</text><text x="475" y="235" text-anchor="middle" class="small">PRs + protected main</text>
+  <rect x="680" y="165" width="260" height="110" class="box"/><text x="810" y="200" text-anchor="middle" class="label">GitHub Actions</text><text x="810" y="225" text-anchor="middle" class="small">lint • Jest • build</text><text x="810" y="247" text-anchor="middle" class="small">Playwright • reports</text>
+  <rect x="1040" y="180" width="250" height="80" class="primary"/><text x="1165" y="210" text-anchor="middle" class="label">AWS Amplify</text><text x="1165" y="235" text-anchor="middle" class="small">build + deploy</text>
+  <rect x="1360" y="180" width="150" height="80" class="box"/><text x="1435" y="210" text-anchor="middle" class="label">Preview</text><text x="1435" y="235" text-anchor="middle" class="small">per pull request</text>
+  <path d="M280 220 H360" class="arrow"/><path d="M590 220 H680" class="arrow"/><path d="M940 220 H1040" class="arrow"/><path d="M1290 220 H1360" class="arrow dash"/>
+
+  <rect x="40" y="325" width="1520" height="430" class="lane" rx="22"/>
+  <text x="65" y="360" class="laneTitle">2. Runtime and integrations</text>
+  <rect x="80" y="420" width="190" height="85" class="box"/><text x="175" y="452" text-anchor="middle" class="label">Visitors</text><text x="175" y="478" text-anchor="middle" class="small">desktop + mobile</text>
+  <rect x="330" y="420" width="210" height="85" class="box"/><text x="435" y="452" text-anchor="middle" class="label">Squarespace DNS</text><text x="435" y="478" text-anchor="middle" class="small">zerodroplet.com</text>
+  <rect x="610" y="400" width="280" height="125" class="primary"/><text x="750" y="438" text-anchor="middle" class="label">AWS Amplify edge</text><text x="750" y="466" text-anchor="middle" class="small">CDN • TLS • cache</text><text x="750" y="490" text-anchor="middle" class="small">SSR • static assets</text>
+  <rect x="980" y="390" width="290" height="145" class="primary"/><text x="1125" y="428" text-anchor="middle" class="label">Next.js App Router</text><text x="1125" y="456" text-anchor="middle" class="small">Server Components + pages</text><text x="1125" y="480" text-anchor="middle" class="small">/api/contact • /api/chat</text><text x="1125" y="504" text-anchor="middle" class="small">sitemap • robots • metadata</text>
+  <path d="M270 462 H330" class="arrow"/><path d="M540 462 H610" class="arrow"/><path d="M890 462 H980" class="arrow"/>
+
+  <rect x="90" y="610" width="230" height="90" class="external"/><text x="205" y="642" text-anchor="middle" class="label">Sanity CMS</text><text x="205" y="668" text-anchor="middle" class="small">content + image CDN</text>
+  <rect x="360" y="610" width="210" height="90" class="external"/><text x="465" y="642" text-anchor="middle" class="label">Yotpo</text><text x="465" y="668" text-anchor="middle" class="small">ratings + reviews</text>
+  <rect x="610" y="610" width="220" height="90" class="external"/><text x="720" y="642" text-anchor="middle" class="label">GTM → GA4</text><text x="720" y="668" text-anchor="middle" class="small">events + conversions</text>
+  <rect x="870" y="610" width="210" height="90" class="external"/><text x="975" y="642" text-anchor="middle" class="label">Resend</text><text x="975" y="668" text-anchor="middle" class="small">contact email</text>
+  <rect x="1120" y="610" width="210" height="90" class="external"/><text x="1225" y="642" text-anchor="middle" class="label">OpenAI</text><text x="1225" y="668" text-anchor="middle" class="small">AI enquiry assistant</text>
+  <rect x="1370" y="610" width="150" height="90" class="external"/><text x="1445" y="642" text-anchor="middle" class="label">Editors</text><text x="1445" y="668" text-anchor="middle" class="small">Sanity Studio</text>
+
+  <path d="M1055 535 C950 575 340 570 205 610" class="arrow"/><path d="M1090 535 C940 585 570 580 465 610" class="arrow"/><path d="M1120 535 C1020 580 800 580 720 610" class="arrow"/><path d="M1160 535 C1120 575 1020 580 975 610" class="arrow"/><path d="M1195 535 C1210 565 1220 580 1225 610" class="arrow"/><path d="M1370 655 H1330" class="arrow"/>
+
+  <rect x="40" y="780" width="1520" height="250" class="lane" rx="22"/>
+  <text x="65" y="815" class="laneTitle">3. Observability, security and operations</text>
+  <rect x="690" y="855" width="230" height="105" class="obs"/><text x="805" y="890" text-anchor="middle" class="label">CloudWatch</text><text x="805" y="916" text-anchor="middle" class="small">platform metrics</text><text x="805" y="938" text-anchor="middle" class="small">logs + alarms</text>
+  <rect x="970" y="855" width="230" height="105" class="obs"/><text x="1085" y="890" text-anchor="middle" class="label">AWS Budgets</text><text x="1085" y="916" text-anchor="middle" class="small">$5 • $10 • $25</text><text x="1085" y="938" text-anchor="middle" class="small">cost alerts</text>
+  <rect x="1250" y="845" width="270" height="125" class="box"/><text x="1385" y="880" text-anchor="middle" class="label">Security controls</text><text x="1385" y="906" text-anchor="middle" class="small">rate limits • Turnstile</text><text x="1385" y="928" text-anchor="middle" class="small">CSP • secret scanning</text><text x="1385" y="950" text-anchor="middle" class="small">least privilege • no PII logs</text>
+  <path d="M760 525 C770 700 790 780 805 855" class="arrow dash"/><path d="M1165 260 C1120 550 1100 740 1085 855" class="arrow dash"/>
+
+  <rect x="60" y="995" width="130" height="25" class="badge" rx="12"/><text x="125" y="1013" text-anchor="middle" class="badgeText">Production path</text>
+  <text x="210" y="1013" class="small">GitHub main → Amplify → Squarespace DNS → users</text>
+</svg>
