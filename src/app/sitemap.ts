@@ -1,9 +1,10 @@
 import type {MetadataRoute} from 'next';
-import {services} from '@/lib/content';
+import {getServices} from '@/sanity/lib/services';
 
 const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://zerodroplet.com').replace(/\/$/, '');
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const services = await getServices();
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: siteUrl,

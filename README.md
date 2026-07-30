@@ -21,8 +21,12 @@ pnpm dev
 ## CMS setup
 1. Create a free Sanity project.
 2. Put project ID and dataset in `.env.local`.
-3. Run `pnpm dlx sanity@latest init` or deploy a separate Studio using `sanity.config.ts` and `src/sanity/schemaTypes`.
-4. Replace the local fallback in `src/lib/content.ts` with GROQ queries once content is migrated.
+3. Run the standalone authoring environment with `pnpm studio:dev`.
+4. Create and publish `service` documents. The website reads published Sanity content and safely uses `src/lib/content.ts` when Sanity is not configured or unavailable.
+
+Copy `.env.example` to `.env.local` and fill in the project ID. The Studio runs
+separately at `http://localhost:3333`; add both local and production website
+origins to the project's Sanity CORS settings.
 
 ## Integrations
 - Add `NEXT_PUBLIC_YOTPO_APP_KEY` from Yotpo On-site Widgets.

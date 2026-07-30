@@ -9,15 +9,15 @@ declare global {
 }
 
 export function trackEvent(event: string, payload: AnalyticsPayload = {}) {
-  if (typeof window === 'undefined') return;
+  if (typeof window === "undefined") return;
 
   if (process.env.NEXT_PUBLIC_GTM_ID) {
     window.dataLayer = window.dataLayer ?? [];
-    window.dataLayer.push({event, ...payload});
+    window.dataLayer.push({ event, ...payload });
     return;
   }
 
   if (process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && window.gtag) {
-    window.gtag('event', event, payload);
+    window.gtag("event", event, payload);
   }
 }
