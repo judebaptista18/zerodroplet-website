@@ -31,6 +31,18 @@ export const publicEnv = {
     'NEXT_PUBLIC_WHATSAPP_URL',
     process.env.NEXT_PUBLIC_WHATSAPP_URL,
   ),
+  officeAddress: required(
+    'NEXT_PUBLIC_OFFICE_ADDRESS',
+    process.env.NEXT_PUBLIC_OFFICE_ADDRESS,
+  ),
+  googleMapsEmbedUrl: required(
+    'NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL',
+    process.env.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL,
+  ),
+  googleMapsDirectionsUrl: required(
+    'NEXT_PUBLIC_GOOGLE_MAPS_DIRECTIONS_URL',
+    process.env.NEXT_PUBLIC_GOOGLE_MAPS_DIRECTIONS_URL,
+  ),
   gtmId: process.env.NEXT_PUBLIC_GTM_ID,
   gaMeasurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID,
   yotpoAppKey: process.env.NEXT_PUBLIC_YOTPO_APP_KEY,

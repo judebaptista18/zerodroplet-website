@@ -72,7 +72,7 @@ export function Footer() {
         </div>
         <div>
           <strong>Registered office</strong>
-          <p>Margao, Goa, India</p>
+          <p>{publicEnv.officeAddress}</p>
           <p>{publicEnv.contactEmail}</p>
         </div>
       </div>

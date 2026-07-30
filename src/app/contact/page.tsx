@@ -1,5 +1,5 @@
 import { ContactForm } from "@/components/ContactForm";
-import {publicEnv} from '@/lib/env';
+import {GoogleMap} from '@/components/GoogleMap';
 
 export const metadata = { title: "Contact" };
 export default function Contact() {
@@ -15,18 +15,18 @@ export default function Contact() {
           </p>
         </div>
       </section>
-      <section className="section">
-        <div className="container heroGrid">
-          <ContactForm />
-          <div>
-            <h2>Zero Droplet Engineers & Consultants</h2>
-            <p>Registered office: Margao, Goa, India</p>
-            <p>Email: {publicEnv.contactEmail}</p>
+      <section className="section contactSection">
+        <div className="container contactLayout">
+          <div className="contactFormPanel">
+            <div className="eyebrow">Project enquiry</div>
+            <h2>How can we help?</h2>
             <p>
               For faster assessment, include available water analysis, effluent
               analysis, plant capacity and site photographs.
             </p>
+            <ContactForm />
           </div>
+          <GoogleMap />
         </div>
       </section>
     </>
