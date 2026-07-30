@@ -1,7 +1,7 @@
 import {HomeContent} from '@/components/HomeContent';
-import {getServices} from '@/sanity/lib/services';
+import {getHomePage} from '@/sanity/lib/home-page';
 
 export default async function Home() {
-  const services = await getServices();
-  return <HomeContent services={services} />;
+  const homePage = await getHomePage();
+  return <HomeContent homePage={homePage} />;
 }

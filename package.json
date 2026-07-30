@@ -22,6 +22,7 @@
     "@ant-design/nextjs-registry": "^1.0.2",
     "@next/third-parties": "^16.2.12",
     "@portabletext/react": "^4.0.3",
+    "@sanity/icons": "^5.2.1",
     "@sanity/image-url": "2",
     "@sanity/vision": "^5.31.1",
     "antd": "6.5.2",

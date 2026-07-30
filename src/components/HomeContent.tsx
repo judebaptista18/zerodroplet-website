@@ -1,14 +1,16 @@
 'use client';
 
 import Link from 'next/link';
+import {PortableText} from '@portabletext/react';
 import {Button, Card} from 'antd';
 import {
   ArrowRightOutlined,
+  CheckCircleOutlined,
   DashboardOutlined,
   ExperimentOutlined,
   ToolOutlined,
 } from '@ant-design/icons';
-import type {Service} from '@/lib/content';
+import type {HomePageContent, LogoItem} from '@/lib/home-content';
 import {YotpoReviews} from '@/components/YotpoReviews';
 
 const icons = [
@@ -20,7 +22,42 @@ const icons = [
   <ExperimentOutlined key="products" />,
 ];
 
-export function HomeContent({services}: {services: Service[]}) {
+function Logo({logo}: {logo: LogoItem}) {
+  const image = (
+    <img
+      src={logo.imageUrl}
+      alt={logo.alt}
+      loading="lazy"
+      decoding="async"
+    />
+  );
+
+  if (!logo.website) return image;
+
+  return (
+    <a
+      href={logo.website}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Visit ${logo.name}`}
+    >
+      {image}
+    </a>
+  );
+}
+
+export function HomeContent({
+  homePage,
+}: {
+  homePage: HomePageContent;
+}) {
+  const {
+    servicesSection,
+    about,
+    clientShowcase,
+    distributorship,
+  } = homePage;
+
   return (
     <>
       <section className="hero">
@@ -50,10 +87,13 @@ export function HomeContent({services}: {services: Service[]}) {
       </div>
       <section id="services" className="section">
         <div className="container">
-          <div className="eyebrow">Our services</div>
-          <h2 className="sectionTitle">Complete treatment solutions, not isolated equipment</h2>
+          <div className="eyebrow">{servicesSection.eyebrow}</div>
+          <h2 className="sectionTitle">{servicesSection.heading}</h2>
+          {servicesSection.introduction && (
+            <p className="lead">{servicesSection.introduction}</p>
+          )}
           <div className="cards">
-            {services.map((service, index) => (
+            {servicesSection.services.map((service, index) => (
               <Card key={service.id} className="serviceCard">
                 <div className="serviceIcon">{icons[index % icons.length]}</div>
                 <h3>{service.title}</h3>
@@ -65,17 +105,82 @@ export function HomeContent({services}: {services: Service[]}) {
         </div>
       </section>
       <section id="about" className="section sectionAlt">
-        <div className="container heroGrid">
-          <div>
-            <div className="eyebrow">About Zero Droplet</div>
-            <h2 className="sectionTitle">Engineering expertise with accountable delivery</h2>
-            <p className="lead">Based in Margao, Goa, our environmental experts and chemical engineers support the full project lifecycle: site survey, detailed design, procurement, execution, commissioning, operations and maintenance.</p>
+        <div className="container aboutGrid">
+          <div className="aboutCopy">
+            <div className="eyebrow">{about.eyebrow}</div>
+            <h2 className="sectionTitle">{about.heading}</h2>
+            <div className="lead portableText">
+              <PortableText value={about.body} />
+            </div>
           </div>
           <div className="process">
-            <div className="step"><span className="stepNum">01</span><h3>Survey</h3><p>Understand source water, effluent, space and compliance needs.</p></div>
-            <div className="step"><span className="stepNum">02</span><h3>Design</h3><p>Engineer the right process and lifecycle cost.</p></div>
-            <div className="step"><span className="stepNum">03</span><h3>Deliver</h3><p>Procure, install, test and commission.</p></div>
-            <div className="step"><span className="stepNum">04</span><h3>Support</h3><p>Maintain performance with responsive service.</p></div>
+            {about.processSteps.map((step, index) => (
+              <div className="step" key={step._key}>
+                <span className="stepNum">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section id="clients" className="section clientSection">
+        <div className="container sectionIntro">
+          <div className="eyebrow">{clientShowcase.eyebrow}</div>
+          <h2 className="sectionTitle">{clientShowcase.heading}</h2>
+          {clientShowcase.introduction && (
+            <p className="lead">{clientShowcase.introduction}</p>
+          )}
+        </div>
+        <div className="logoRail" aria-label="Client logos">
+          <div className="logoTrack">
+            {[0, 1].map((pass) => (
+              <div
+                className="logoGroup"
+                key={pass}
+                aria-hidden={pass === 1}
+              >
+                {clientShowcase.clients.map((client) => (
+                  <div className="logoTile" key={`${pass}-${client._key}`}>
+                    <Logo logo={client} />
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section id="distributors" className="section distributorSection">
+        <div className="container">
+          <div className="sectionIntro sectionIntroCentered">
+            <div className="eyebrow">{distributorship.eyebrow}</div>
+            <h2 className="sectionTitle">{distributorship.heading}</h2>
+            {distributorship.introduction && (
+              <p className="lead">{distributorship.introduction}</p>
+            )}
+          </div>
+          <div className="distributorGrid">
+            {distributorship.partners.map((partner) => (
+              <article className="distributorCard" key={partner._key}>
+                <div className="distributorLogo">
+                  <Logo logo={partner} />
+                </div>
+                <div className="distributorContent">
+                  <div className="authorisedBadge">
+                    <CheckCircleOutlined />
+                    Authorised distributor
+                  </div>
+                  <h3>{partner.name}</h3>
+                  <ul>
+                    {partner.offerings.map((offering) => (
+                      <li key={offering}>{offering}</li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
