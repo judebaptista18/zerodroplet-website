@@ -1,3 +1,66 @@
-import {NextResponse} from 'next/server';import {z} from 'zod';import {Resend} from 'resend';
-const schema=z.object({name:z.string().min(2).max(100),email:z.email(),phone:z.string().max(30).optional(),service:z.string().max(100).optional(),message:z.string().min(15).max(3000),company:z.string().optional()});
-export async function POST(req:Request){try{const data=schema.parse(await req.json());if(data.company)return NextResponse.json({ok:true});if(!process.env.RESEND_API_KEY){console.info('Contact enquiry',data);return NextResponse.json({ok:true,demo:true})}const resend=new Resend(process.env.RESEND_API_KEY);await resend.emails.send({from:process.env.CONTACT_FROM_EMAIL!,to:process.env.CONTACT_TO_EMAIL!,replyTo:data.email,subject:`Website enquiry: ${data.service||'General'}`,text:`Name: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone||'-'}\nService: ${data.service||'-'}\n\n${data.message}`});return NextResponse.json({ok:true})}catch{return NextResponse.json({error:'Invalid enquiry'}, {status:400})}}
+import {NextResponse} from 'next/server';
+import {Resend} from 'resend';
+import {z} from 'zod';
+
+const requestSchema = z.object({
+  name: z.string().trim().min(2).max(100),
+  email: z.email(),
+  phone: z.string().trim().max(30).optional(),
+  service: z.string().trim().max(100).optional(),
+  message: z.string().trim().min(15).max(3000),
+  company: z.string().optional(),
+});
+
+export async function POST(request: Request) {
+  const parsedRequest = requestSchema.safeParse(await request.json().catch(() => null));
+
+  if (!parsedRequest.success) {
+    return NextResponse.json({error: 'Invalid enquiry'}, {status: 400});
+  }
+
+  const enquiry = parsedRequest.data;
+
+  if (enquiry.company) {
+    return NextResponse.json({ok: true});
+  }
+
+  if (!process.env.RESEND_API_KEY) {
+    return NextResponse.json({ok: true, demo: true});
+  }
+
+  if (!process.env.CONTACT_FROM_EMAIL || !process.env.CONTACT_TO_EMAIL) {
+    console.error('Contact email addresses are not configured');
+    return NextResponse.json(
+      {error: 'The enquiry service is not configured'},
+      {status: 503},
+    );
+  }
+
+  try {
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const {error} = await resend.emails.send({
+      from: process.env.CONTACT_FROM_EMAIL,
+      to: process.env.CONTACT_TO_EMAIL,
+      replyTo: enquiry.email,
+      subject: `Website enquiry: ${enquiry.service || 'General'}`,
+      text: [
+        `Name: ${enquiry.name}`,
+        `Email: ${enquiry.email}`,
+        `Phone: ${enquiry.phone || '-'}`,
+        `Service: ${enquiry.service || '-'}`,
+        '',
+        enquiry.message,
+      ].join('\n'),
+    });
+
+    if (error) throw error;
+
+    return NextResponse.json({ok: true});
+  } catch (error) {
+    console.error('Contact email delivery failed', error);
+    return NextResponse.json(
+      {error: 'The enquiry could not be delivered'},
+      {status: 502},
+    );
+  }
+}

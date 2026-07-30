@@ -1,5 +1,22 @@
 import '@testing-library/jest-dom';
 
+class MessageChannelMock {
+  port1 = {
+    onmessage: null as (() => void) | null,
+  };
+
+  port2 = {
+    postMessage: () => {
+      setTimeout(() => this.port1.onmessage?.(), 0);
+    },
+  };
+}
+
+Object.defineProperty(globalThis, 'MessageChannel', {
+  writable: true,
+  value: MessageChannelMock,
+});
+
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: jest.fn().mockImplementation((query: string) => ({
