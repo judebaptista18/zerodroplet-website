@@ -7,18 +7,18 @@ function required(name: string, value: string | undefined): string {
 }
 
 export const apiVersion = required(
-  'NEXT_PUBLIC_SANITY_API_VERSION',
-  process.env.NEXT_PUBLIC_SANITY_API_VERSION,
+  'SANITY_STUDIO_API_VERSION',
+  process.env.SANITY_STUDIO_API_VERSION,
 );
 
 export const dataset = required(
-  'NEXT_PUBLIC_SANITY_DATASET',
-  process.env.NEXT_PUBLIC_SANITY_DATASET,
+  'SANITY_STUDIO_DATASET',
+  process.env.SANITY_STUDIO_DATASET,
 );
 
 export const projectId = required(
-  'NEXT_PUBLIC_SANITY_PROJECT_ID',
-  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  'SANITY_STUDIO_PROJECT_ID',
+  process.env.SANITY_STUDIO_PROJECT_ID,
 );
 
 export const sanityConfigured = process.env.NODE_ENV !== 'test';
