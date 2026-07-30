@@ -1,6 +1,7 @@
 import {NextResponse} from 'next/server';
 import OpenAI from 'openai';
 import {z} from 'zod';
+import {serverEnv} from '@/lib/server-env';
 
 const requestSchema = z.object({
   message: z.string().trim().min(1).max(1000),
@@ -19,14 +20,14 @@ export async function POST(request: Request) {
     return NextResponse.json({error: 'Invalid request'}, {status: 400});
   }
 
-  if (!process.env.OPENAI_API_KEY) {
+  if (!serverEnv.openAiApiKey) {
     return NextResponse.json({answer: fallbackAnswer});
   }
 
   try {
-    const client = new OpenAI({apiKey: process.env.OPENAI_API_KEY});
+    const client = new OpenAI({apiKey: serverEnv.openAiApiKey});
     const response = await client.responses.create({
-      model: process.env.OPENAI_MODEL || 'gpt-4.1-mini',
+      model: serverEnv.openAiModel,
       instructions: `You are the Zero Droplet website assistant. Use only this business context: ${businessContext} Keep answers concise. Never invent prices, certifications or project claims.`,
       input: parsedRequest.data.message,
       max_output_tokens: 250,

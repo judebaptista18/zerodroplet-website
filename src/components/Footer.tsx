@@ -1,4 +1,6 @@
 import Link from "next/link";
+import {publicEnv} from '@/lib/env';
+
 export function Footer() {
   return (
     <footer className="footer">
@@ -24,7 +26,7 @@ export function Footer() {
         <div>
           <strong>Registered office</strong>
           <p>Margao, Goa, India</p>
-          <p>info@zerodroplet.com</p>
+          <p>{publicEnv.contactEmail}</p>
         </div>
       </div>
       <div className="container">

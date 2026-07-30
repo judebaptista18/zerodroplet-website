@@ -3,12 +3,13 @@ import {structureTool} from 'sanity/structure';
 import {visionTool} from '@sanity/vision';
 import {schemaTypes} from './src/sanity/schemaTypes';
 import {structure} from './src/sanity/structure';
+import {dataset, projectId} from './src/sanity/env';
 
 export default defineConfig({
   name: 'default',
   title: 'Zero Droplet CMS',
-  projectId: 'wz33az8p',
-  dataset: 'production',
+  projectId,
+  dataset,
   auth: {
     loginMethod: 'token',
     redirectOnSingle: false,

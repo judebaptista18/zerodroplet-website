@@ -1,4 +1,5 @@
 import {expect, test} from '@playwright/test';
+import {publicEnv} from '@/lib/env';
 
 test('home page exposes the primary content and service navigation', async ({page}) => {
   await page.goto('/');
@@ -14,5 +15,5 @@ test('home page exposes the primary content and service navigation', async ({pag
 test('sitemap is publicly available', async ({request}) => {
   const response = await request.get('/sitemap.xml');
   expect(response.ok()).toBeTruthy();
-  expect(await response.text()).toContain('https://zerodroplet.com/contact');
+  expect(await response.text()).toContain(`${publicEnv.siteUrl}/contact`);
 });

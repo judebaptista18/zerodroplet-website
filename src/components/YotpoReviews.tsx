@@ -1,7 +1,9 @@
 "use client";
 import Script from "next/script";
+import {publicEnv} from '@/lib/env';
+
 export function YotpoReviews() {
-  const key = process.env.NEXT_PUBLIC_YOTPO_APP_KEY;
+  const key = publicEnv.yotpoAppKey;
   if (!key)
     return (
       <div style={{ padding: 24, border: "1px dashed #9ab", borderRadius: 12 }}>
@@ -19,7 +21,7 @@ export function YotpoReviews() {
         className="yotpo yotpo-main-widget"
         data-product-id="zerodroplet-site"
         data-name="Zero Droplet"
-        data-url="https://zerodroplet.com"
+        data-url={publicEnv.siteUrl}
       />
     </>
   );

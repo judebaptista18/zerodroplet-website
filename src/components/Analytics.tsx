@@ -1,6 +1,7 @@
 "use client";
 
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
+import {publicEnv} from '@/lib/env';
 
 /**
  * GTM is preferred in production because GA4 and future marketing tags can be
@@ -8,8 +9,8 @@ import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
  * avoiding duplicate page-view events.
  */
 export function Analytics() {
-  const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
-  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+  const gtmId = publicEnv.gtmId;
+  const gaId = publicEnv.gaMeasurementId;
 
   if (gtmId) return <GoogleTagManager gtmId={gtmId} />;
   if (gaId) return <GoogleAnalytics gaId={gaId} />;

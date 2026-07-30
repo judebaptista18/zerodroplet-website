@@ -1,5 +1,6 @@
 import sitemap from '@/app/sitemap';
 import {services} from '@/lib/content';
+import {publicEnv} from '@/lib/env';
 
 jest.mock('@/sanity/lib/services', () => ({
   getServices: async () =>
@@ -11,11 +12,11 @@ describe('sitemap', () => {
     const entries = await sitemap();
     const urls = entries.map((entry) => entry.url);
 
-    expect(urls).toContain('https://zerodroplet.com');
-    expect(urls).toContain('https://zerodroplet.com/contact');
+    expect(urls).toContain(publicEnv.siteUrl);
+    expect(urls).toContain(`${publicEnv.siteUrl}/contact`);
 
     for (const service of services) {
-      expect(urls).toContain(`https://zerodroplet.com/services/${service.slug}`);
+      expect(urls).toContain(`${publicEnv.siteUrl}/services/${service.slug}`);
     }
 
     expect(entries).toHaveLength(services.length + 2);

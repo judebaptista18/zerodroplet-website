@@ -1,6 +1,7 @@
 import {NextResponse} from 'next/server';
 import {Resend} from 'resend';
 import {z} from 'zod';
+import {serverEnv} from '@/lib/server-env';
 
 const requestSchema = z.object({
   name: z.string().trim().min(2).max(100),
@@ -24,11 +25,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ok: true});
   }
 
-  if (!process.env.RESEND_API_KEY) {
+  if (!serverEnv.resendApiKey) {
     return NextResponse.json({ok: true, demo: true});
   }
 
-  if (!process.env.CONTACT_FROM_EMAIL || !process.env.CONTACT_TO_EMAIL) {
+  if (!serverEnv.contactFromEmail || !serverEnv.contactToEmail) {
     console.error('Contact email addresses are not configured');
     return NextResponse.json(
       {error: 'The enquiry service is not configured'},
@@ -37,10 +38,10 @@ export async function POST(request: Request) {
   }
 
   try {
-    const resend = new Resend(process.env.RESEND_API_KEY);
+    const resend = new Resend(serverEnv.resendApiKey);
     const {error} = await resend.emails.send({
-      from: process.env.CONTACT_FROM_EMAIL,
-      to: process.env.CONTACT_TO_EMAIL,
+      from: serverEnv.contactFromEmail,
+      to: serverEnv.contactToEmail,
       replyTo: enquiry.email,
       subject: `Website enquiry: ${enquiry.service || 'General'}`,
       text: [

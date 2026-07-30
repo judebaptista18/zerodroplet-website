@@ -1,4 +1,6 @@
 import { ContactForm } from "@/components/ContactForm";
+import {publicEnv} from '@/lib/env';
+
 export const metadata = { title: "Contact" };
 export default function Contact() {
   return (
@@ -19,7 +21,7 @@ export default function Contact() {
           <div>
             <h2>Zero Droplet Engineers & Consultants</h2>
             <p>Registered office: Margao, Goa, India</p>
-            <p>Email: info@zerodroplet.com</p>
+            <p>Email: {publicEnv.contactEmail}</p>
             <p>
               For faster assessment, include available water analysis, effluent
               analysis, plant capacity and site photographs.
