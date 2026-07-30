@@ -30,7 +30,7 @@ export function Footer() {
         </div>
       </div>
       <div className="container">
-        <hr style={{ borderColor: "#28515b", margin: "30px 0" }} />
+        <hr style={{ borderColor: "#417fc2", margin: "30px 0" }} />
         <small>
           © {new Date().getFullYear()} Zero Droplet Engineers & Consultants. All
           rights reserved.

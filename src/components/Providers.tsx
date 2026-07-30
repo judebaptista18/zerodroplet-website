@@ -7,7 +7,11 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <ConfigProvider
         theme={{
           token: {
-            colorPrimary: "#0b8f87",
+            colorPrimary: "#356fae",
+            colorInfo: "#417fc2",
+            colorLink: "#356fae",
+            colorSuccess: "#2f8134",
+            colorText: "#293e55",
             borderRadius: 10,
             fontFamily: "Arial, Helvetica, sans-serif",
           },

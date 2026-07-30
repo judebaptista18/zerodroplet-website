@@ -26,7 +26,9 @@ export function ServiceDetails({service}: {service: Service}) {
             <h2>Capabilities</h2>
             {service.items.map((item) => (
               <p key={item}>
-                <CheckCircleOutlined style={{color: '#0b8f87', marginRight: 10}} />
+                <CheckCircleOutlined
+                  style={{color: 'var(--brand-green-strong)', marginRight: 10}}
+                />
                 {item}
               </p>
             ))}

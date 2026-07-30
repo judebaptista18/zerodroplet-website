@@ -1,10 +1,13 @@
 :root {
-  --navy: #073b4c;
-  --teal: #0b8f87;
-  --cyan: #26c6da;
-  --ice: #eefafa;
-  --ink: #17323b;
-  --muted: #61777e;
+  --brand-blue: #417fc2;
+  --brand-blue-strong: #356fae;
+  --brand-green: #49b848;
+  --brand-green-strong: #2f8134;
+  --brand-warm: #8f7f7a;
+  --brand-deep-blue: #244f7f;
+  --brand-mist: #f1f6fb;
+  --ink: #293e55;
+  --muted: #687888;
   --white: #fff;
   --max: 1180px;
 }
@@ -24,6 +27,13 @@ a {
   color: inherit;
   text-decoration: none;
 }
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(53, 111, 174, 0.45);
+  outline-offset: 3px;
+}
 .container {
   width: min(var(--max), calc(100% - 32px));
   margin: auto;
@@ -32,12 +42,12 @@ a {
   padding: 80px 0;
 }
 .sectionAlt {
-  background: var(--ice);
+  background: var(--brand-mist);
 }
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: var(--teal);
+  color: var(--brand-green-strong);
   font-weight: 700;
   font-size: 12px;
 }
@@ -45,7 +55,7 @@ a {
   font-size: clamp(30px, 4vw, 46px);
   line-height: 1.08;
   margin: 10px 0 18px;
-  color: var(--navy);
+  color: var(--brand-deep-blue);
 }
 .lead {
   font-size: 18px;
@@ -59,7 +69,7 @@ a {
   z-index: 20;
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid #dfeeee;
+  border-bottom: 1px solid #dce7f1;
 }
 .headerInner {
   height: 76px;
@@ -70,11 +80,11 @@ a {
 }
 .brand {
   font-weight: 900;
-  color: var(--navy);
+  color: var(--brand-blue);
   font-size: 21px;
 }
 .brand span {
-  color: var(--teal);
+  color: var(--brand-green);
 }
 .headerBrand {
   display: flex;
@@ -92,6 +102,12 @@ a {
   align-items: center;
   font-weight: 600;
 }
+.nav > a:not(:last-child) {
+  transition: color 160ms ease;
+}
+.nav > a:not(:last-child):hover {
+  color: var(--brand-blue-strong);
+}
 .hero {
   min-height: 680px;
   display: grid;
@@ -99,10 +115,10 @@ a {
   background:
     radial-gradient(
       circle at 80% 30%,
-      rgba(38, 198, 218, 0.28),
+      rgba(73, 184, 72, 0.18),
       transparent 28%
     ),
-    linear-gradient(135deg, #eafeff 0%, #fff 48%, #eaf8f4 100%);
+    linear-gradient(135deg, #edf5fc 0%, #fff 48%, #f1faef 100%);
   overflow: hidden;
 }
 .heroGrid {
@@ -114,11 +130,11 @@ a {
 .hero h1 {
   font-size: clamp(46px, 7vw, 78px);
   line-height: 0.98;
-  color: var(--navy);
+  color: var(--brand-deep-blue);
   margin: 12px 0 24px;
 }
 .hero h1 span {
-  color: var(--teal);
+  color: var(--brand-green-strong);
 }
 .actions {
   display: flex;
@@ -129,8 +145,13 @@ a {
 .waterCard {
   height: 430px;
   border-radius: 38% 62% 61% 39%/37% 42% 58% 63%;
-  background: linear-gradient(145deg, #0b8f87, #26c6da);
-  box-shadow: 0 30px 80px rgba(7, 59, 76, 0.25);
+  background: linear-gradient(
+    145deg,
+    var(--brand-blue-strong) 0%,
+    var(--brand-blue) 62%,
+    var(--brand-green) 125%
+  );
+  box-shadow: 0 30px 80px rgba(36, 79, 127, 0.25);
   display: grid;
   place-items: center;
   color: white;
@@ -150,14 +171,14 @@ a {
 }
 .stat {
   background: white;
-  border: 1px solid #dfeeee;
+  border: 1px solid #dce7f1;
   border-radius: 18px;
   padding: 25px;
-  box-shadow: 0 16px 40px rgba(7, 59, 76, 0.08);
+  box-shadow: 0 16px 40px rgba(36, 79, 127, 0.09);
 }
 .stat strong {
   font-size: 34px;
-  color: var(--teal);
+  color: var(--brand-green-strong);
 }
 .cards {
   display: grid;
@@ -166,12 +187,19 @@ a {
 }
 .serviceCard {
   height: 100%;
-  border: 1px solid #dceced !important;
-  box-shadow: 0 12px 35px rgba(7, 59, 76, 0.06);
+  border: 1px solid #dce7f1 !important;
+  box-shadow: 0 12px 35px rgba(36, 79, 127, 0.07);
+}
+.serviceCard a {
+  color: var(--brand-blue-strong);
+  font-weight: 700;
+}
+.serviceCard a:hover {
+  color: var(--brand-green-strong);
 }
 .serviceIcon {
   font-size: 30px;
-  color: var(--teal);
+  color: var(--brand-blue);
 }
 .process {
   display: grid;
@@ -207,9 +235,9 @@ a {
   overflow: hidden;
   padding: 24px;
   background: white;
-  border: 1px solid #dceced;
+  border: 1px solid #dce7f1;
   border-radius: 16px;
-  box-shadow: 0 12px 30px rgba(7, 59, 76, 0.05);
+  box-shadow: 0 12px 30px rgba(36, 79, 127, 0.06);
 }
 .step::after {
   content: "";
@@ -218,14 +246,14 @@ a {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background: rgba(38, 198, 218, 0.1);
+  background: rgba(73, 184, 72, 0.11);
 }
 .stepNum {
-  color: var(--teal);
+  color: var(--brand-green-strong);
   font-weight: 900;
 }
 .step h3 {
-  color: var(--navy);
+  color: var(--brand-deep-blue);
   margin: 12px 0 8px;
 }
 .step p {
@@ -250,7 +278,7 @@ a {
 .clientSection {
   overflow: hidden;
   background:
-    radial-gradient(circle at 8% 20%, rgba(38, 198, 218, 0.1), transparent 24%),
+    radial-gradient(circle at 8% 20%, rgba(65, 127, 194, 0.11), transparent 24%),
     #fff;
 }
 .logoRail {
@@ -288,9 +316,9 @@ a {
   place-items: center;
   padding: 22px;
   border-radius: 18px;
-  border: 1px solid #dfebed;
+  border: 1px solid #dce7f1;
   background: #fff;
-  box-shadow: 0 12px 34px rgba(7, 59, 76, 0.07);
+  box-shadow: 0 12px 34px rgba(36, 79, 127, 0.08);
 }
 .logoTile a {
   display: grid;
@@ -323,17 +351,17 @@ a {
 }
 .distributorSection {
   background:
-    linear-gradient(rgba(7, 59, 76, 0.96), rgba(7, 59, 76, 0.96)),
-    radial-gradient(circle at 80% 10%, var(--cyan), transparent 40%);
+    linear-gradient(rgba(30, 68, 111, 0.96), rgba(30, 68, 111, 0.96)),
+    radial-gradient(circle at 80% 10%, var(--brand-green), transparent 40%);
 }
 .distributorSection .eyebrow {
-  color: #68e3e7;
+  color: #8de087;
 }
 .distributorSection .sectionTitle {
   color: #fff;
 }
 .distributorSection .lead {
-  color: #c7dde1;
+  color: #d5e2ef;
 }
 .distributorGrid {
   display: grid;
@@ -353,9 +381,9 @@ a {
   display: grid;
   place-items: center;
   padding: 28px;
-  border-bottom: 1px solid #e2ecee;
+  border-bottom: 1px solid #dce7f1;
   background:
-    radial-gradient(circle at 50% 0%, rgba(38, 198, 218, 0.12), transparent 55%),
+    radial-gradient(circle at 50% 0%, rgba(65, 127, 194, 0.13), transparent 55%),
     #fff;
 }
 .distributorLogo a {
@@ -378,8 +406,8 @@ a {
   align-items: center;
   gap: 7px;
   padding: 7px 10px;
-  color: #08786f;
-  background: #e6f8f5;
+  color: var(--brand-green-strong);
+  background: #eaf7e8;
   border-radius: 999px;
   font-size: 12px;
   font-weight: 800;
@@ -388,7 +416,7 @@ a {
 }
 .distributorContent h3 {
   margin: 18px 0 12px;
-  color: var(--navy);
+  color: var(--brand-deep-blue);
   font-size: 24px;
 }
 .distributorContent ul {
@@ -400,7 +428,7 @@ a {
   line-height: 1.5;
 }
 .cta {
-  background: linear-gradient(125deg, var(--navy), #085f67);
+  background: linear-gradient(125deg, var(--brand-deep-blue), #356fae);
   color: white;
   border-radius: 28px;
   padding: 48px;
@@ -414,8 +442,8 @@ a {
   margin: 0 0 10px;
 }
 .footer {
-  background: #052f3d;
-  color: #dcecef;
+  background: #183a60;
+  color: #e1ebf5;
   padding: 50px 0 28px;
 }
 .footerGrid {
@@ -424,7 +452,7 @@ a {
   gap: 30px;
 }
 .footer small {
-  color: #99b5bd;
+  color: #abc0d5;
 }
 .chatButton {
   position: fixed;
@@ -435,11 +463,18 @@ a {
   height: 58px;
   border-radius: 50%;
   border: 0;
-  background: var(--teal);
+  background: var(--brand-green-strong);
   color: white;
   font-size: 24px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
   cursor: pointer;
+  transition:
+    background 160ms ease,
+    transform 160ms ease;
+}
+.chatButton:hover {
+  background: #28732d;
+  transform: translateY(-2px);
 }
 .chatPanel {
   position: fixed;
@@ -453,7 +488,7 @@ a {
   overflow: hidden;
 }
 .chatHead {
-  background: var(--navy);
+  background: var(--brand-deep-blue);
   color: #fff;
   padding: 16px;
   font-weight: 700;
@@ -462,17 +497,17 @@ a {
   height: 300px;
   overflow: auto;
   padding: 16px;
-  background: #f6fbfb;
+  background: #f3f7fb;
 }
 .bubble {
   padding: 10px 12px;
   border-radius: 12px;
   margin-bottom: 10px;
   background: #fff;
-  border: 1px solid #e1eeee;
+  border: 1px solid #dce7f1;
 }
 .bubble.user {
-  background: #dff6f4;
+  background: #eaf7e8;
   margin-left: 34px;
 }
 .chatForm {
@@ -482,7 +517,7 @@ a {
 }
 .pageHero {
   padding: 90px 0 55px;
-  background: linear-gradient(120deg, #eafafa, #fff);
+  background: linear-gradient(120deg, #edf5fc, #fff);
 }
 @media (max-width: 900px) {
   .nav {
