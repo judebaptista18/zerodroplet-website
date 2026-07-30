@@ -76,6 +76,16 @@ a {
 .brand span {
   color: var(--teal);
 }
+.headerBrand {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+.headerBrand img {
+  display: block;
+  width: 240px;
+  height: auto;
+}
 .nav {
   display: flex;
   gap: 24px;
@@ -512,6 +522,9 @@ a {
   }
 }
 @media (max-width: 600px) {
+  .headerBrand img {
+    width: 190px;
+  }
   .section {
     padding: 58px 0;
   }
