@@ -1,7 +1,38 @@
+"use client";
+
 import Link from "next/link";
+import {
+  FacebookFilled,
+  InstagramOutlined,
+  LinkedinFilled,
+  WhatsAppOutlined,
+} from '@ant-design/icons';
 import {publicEnv} from '@/lib/env';
 
 export function Footer() {
+  const socialLinks = [
+    {
+      label: 'Facebook',
+      href: publicEnv.facebookUrl,
+      icon: <FacebookFilled />,
+    },
+    {
+      label: 'Instagram',
+      href: publicEnv.instagramUrl,
+      icon: <InstagramOutlined />,
+    },
+    {
+      label: 'LinkedIn',
+      href: publicEnv.linkedinUrl,
+      icon: <LinkedinFilled />,
+    },
+    {
+      label: 'WhatsApp',
+      href: publicEnv.whatsappUrl,
+      icon: <WhatsAppOutlined />,
+    },
+  ];
+
   return (
     <footer className="footer">
       <div className="container footerGrid">
@@ -13,6 +44,22 @@ export function Footer() {
             Water and wastewater treatment plants, products, consultancy and
             lifecycle services across South India.
           </p>
+          <nav className="socialLinks" aria-label="Zero Droplet social media">
+            {socialLinks.map((social) => (
+              <a
+                href={social.href}
+                key={social.label}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${social.label} — opens in a new tab`}
+              >
+                <span className="socialIcon" aria-hidden="true">
+                  {social.icon}
+                </span>
+                <span>{social.label}</span>
+              </a>
+            ))}
+          </nav>
         </div>
         <div>
           <strong>Explore</strong>

@@ -451,6 +451,53 @@ textarea:focus-visible {
   grid-template-columns: 1.4fr 1fr 1fr;
   gap: 30px;
 }
+.footerGrid p {
+  line-height: 1.65;
+}
+.footerGrid a {
+  transition: color 160ms ease;
+}
+.footerGrid a:hover {
+  color: #fff;
+}
+.socialLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+.socialLinks a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  color: #e1ebf5;
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 14px;
+  font-weight: 700;
+  transition:
+    color 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+.socialLinks a:hover {
+  color: #fff;
+  background: rgba(65, 127, 194, 0.28);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+.socialLinks a:focus-visible {
+  outline-color: #8de087;
+}
+.socialIcon {
+  display: grid;
+  place-items: center;
+  font-size: 19px;
+}
 .footer small {
   color: #abc0d5;
 }

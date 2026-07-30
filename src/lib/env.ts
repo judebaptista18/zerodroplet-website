@@ -15,6 +15,22 @@ export const publicEnv = {
     'NEXT_PUBLIC_CONTACT_EMAIL',
     process.env.NEXT_PUBLIC_CONTACT_EMAIL,
   ),
+  facebookUrl: required(
+    'NEXT_PUBLIC_FACEBOOK_URL',
+    process.env.NEXT_PUBLIC_FACEBOOK_URL,
+  ),
+  instagramUrl: required(
+    'NEXT_PUBLIC_INSTAGRAM_URL',
+    process.env.NEXT_PUBLIC_INSTAGRAM_URL,
+  ),
+  linkedinUrl: required(
+    'NEXT_PUBLIC_LINKEDIN_URL',
+    process.env.NEXT_PUBLIC_LINKEDIN_URL,
+  ),
+  whatsappUrl: required(
+    'NEXT_PUBLIC_WHATSAPP_URL',
+    process.env.NEXT_PUBLIC_WHATSAPP_URL,
+  ),
   gtmId: process.env.NEXT_PUBLIC_GTM_ID,
   gaMeasurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID,
   yotpoAppKey: process.env.NEXT_PUBLIC_YOTPO_APP_KEY,
