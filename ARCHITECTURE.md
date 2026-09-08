@@ -34,7 +34,7 @@ flowchart TB
     NEXT --> CHAT[/api/chat/]
 
     PAGES --> SANITY[Sanity CMS + image CDN]
-    PAGES --> YOTPO[Yotpo reviews]
+    PAGES --> REVIEWS[Google Places reviews]
     PAGES --> GTM[Google Tag Manager]
     GTM --> GA4[Google Analytics 4]
 
@@ -132,9 +132,9 @@ Suggested document types:
 
 ## 6. Integration architecture
 
-### Yotpo
+### Google reviews
 
-Yotpo is loaded as a client-side third-party integration and should be lazy loaded to protect Core Web Vitals. Site reviews are more suitable than product reviews for this service-led business.
+A custom responsive review section loads Google Places reviews through `/api/reviews` when it approaches the viewport. The Places API key stays on the server. Responses are not cached; missing configuration or upstream failures leave a Google profile link available.
 
 ### GA4 and GTM
 
@@ -186,7 +186,7 @@ Recommended operational alerts:
 - Add IP or token-based rate limiting for `/api/contact` and `/api/chat`.
 - Configure Content Security Policy and other security headers.
 - Avoid logging email addresses, telephone numbers, messages and chat content.
-- Apply least-privilege access to AWS, Sanity, Yotpo and analytics accounts.
+- Apply least-privilege access to AWS, Sanity, Google Places and analytics accounts.
 - Enable GitHub secret scanning, Dependabot and two-factor authentication.
 
 ## 9. SEO architecture
@@ -243,7 +243,7 @@ Add a scheduled synthetic monitor for:
 1. The visitor resolves `zerodroplet.com` through Squarespace DNS.
 2. AWS Amplify serves cached assets and pages from the edge.
 3. Next.js fetches structured content from Sanity when revalidation is required.
-4. Yotpo and GTM load after the critical page content.
+4. Google reviews load near the viewport; GTM loads after the critical page content.
 
 ### Contact enquiry
 
@@ -299,7 +299,7 @@ Each environment should have separate values for the Sanity dataset, analytics a
 1. Push the project to a private GitHub repository.
 2. Enable branch protection and GitHub Actions.
 3. Create the Sanity project and migrate existing content.
-4. Configure Resend, Yotpo, GTM/GA4 and OpenAI.
+4. Configure Resend, Google Places, GTM/GA4 and OpenAI.
 5. Connect the GitHub repository to AWS Amplify.
 6. Validate the Amplify preview domain.
 7. Add the production domain in Amplify.

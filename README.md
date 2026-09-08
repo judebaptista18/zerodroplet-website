@@ -5,8 +5,8 @@ Production-oriented starter for `zerodroplet.com` using Next.js 16 App Router, R
 ## Included
 - Responsive brochure/lead-generation website based on the current site's content and blue/teal industrial-water theme.
 - Service routes, metadata, sitemap and robots.
-- Yotpo site-review widget placeholder.
-- Contact/quote form with Zod validation and optional Resend delivery.
+- Custom Google reviews section with optional live Google Places integration.
+- Contact/quote form with Zod validation and configurable Google Forms or Resend delivery.
 - AI enquiry assistant via the OpenAI Responses API, with a safe non-AI fallback.
 - Sanity schemas and client wiring.
 - Security headers and environment variable template.
@@ -29,7 +29,8 @@ separately at `http://localhost:3333`; add both local and production website
 origins to the project's Sanity CORS settings.
 
 ## Integrations
-- Add `NEXT_PUBLIC_YOTPO_APP_KEY` from Yotpo On-site Widgets.
+- To save enquiries to Google Forms with the current frontend, follow [Google Forms setup](integrations/google-forms/README.md). Includes the Apps Script receiver and server-only environment settings.
+- Follow [Google reviews setup](integrations/google-reviews/README.md) to enable live ratings, review cards and Google profile links.
 - Add `RESEND_API_KEY`, verified sender and destination email.
 - Add `OPENAI_API_KEY`; keep it server-side only.
 - Add rate limiting and CAPTCHA/Turnstile before public launch.

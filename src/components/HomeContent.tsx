@@ -11,7 +11,7 @@ import {
   ToolOutlined,
 } from '@ant-design/icons';
 import type {HomePageContent, LogoItem} from '@/lib/home-content';
-import {YotpoReviews} from '@/components/YotpoReviews';
+import {GoogleReviews} from '@/components/GoogleReviews';
 
 const icons = [
   <ExperimentOutlined key="water" />,
@@ -184,11 +184,11 @@ export function HomeContent({
           </div>
         </div>
       </section>
-      <section id="reviews" className="section">
+      <section id="reviews" className="section sectionAlt">
         <div className="container">
           <div className="eyebrow">Customer feedback</div>
           <h2 className="sectionTitle">Built on performance and trust</h2>
-          <YotpoReviews />
+          <GoogleReviews />
         </div>
       </section>
       <section className="section">

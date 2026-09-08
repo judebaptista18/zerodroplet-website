@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1080" viewBox="0 0 1600 1080" role="img" aria-labelledby="title desc">
   <title id="title">Zero Droplet website solution architecture</title>
-  <desc id="desc">GitHub source control and CI feed AWS Amplify. Visitors reach the Next.js application through Squarespace DNS and the AWS edge. The application integrates with Sanity, Yotpo, GTM and GA4, Resend, OpenAI and CloudWatch.</desc>
+  <desc id="desc">GitHub source control and CI feed AWS Amplify. Visitors reach the Next.js application through Squarespace DNS and the AWS edge. The application integrates with Sanity, Google Places, GTM and GA4, Resend, OpenAI and CloudWatch.</desc>
   <defs>
     <style>
       .bg{fill:#f7fbfc}.lane{fill:#ffffff;stroke:#c7d8de;stroke-width:2}.box{fill:#ffffff;stroke:#2a6675;stroke-width:2.2;rx:16}.primary{fill:#e3f5f7;stroke:#087f8c;stroke-width:2.5;rx:18}.external{fill:#f6f1ff;stroke:#6650a4;stroke-width:2;rx:16}.obs{fill:#fff8e7;stroke:#a56b00;stroke-width:2;rx:16}.title{font:700 30px Arial,sans-serif;fill:#14343d}.laneTitle{font:700 19px Arial,sans-serif;fill:#315c67}.label{font:700 18px Arial,sans-serif;fill:#14343d}.small{font:400 14px Arial,sans-serif;fill:#315c67}.arrow{stroke:#436f79;stroke-width:3;fill:none;marker-end:url(#m)}.dash{stroke-dasharray:8 7}.edgeLabel{font:600 13px Arial,sans-serif;fill:#436f79}.badge{fill:#087f8c}.badgeText{font:700 13px Arial,sans-serif;fill:#fff}
@@ -29,7 +29,7 @@
   <path d="M270 462 H330" class="arrow"/><path d="M540 462 H610" class="arrow"/><path d="M890 462 H980" class="arrow"/>
 
   <rect x="90" y="610" width="230" height="90" class="external"/><text x="205" y="642" text-anchor="middle" class="label">Sanity CMS</text><text x="205" y="668" text-anchor="middle" class="small">content + image CDN</text>
-  <rect x="360" y="610" width="210" height="90" class="external"/><text x="465" y="642" text-anchor="middle" class="label">Yotpo</text><text x="465" y="668" text-anchor="middle" class="small">ratings + reviews</text>
+  <rect x="360" y="610" width="210" height="90" class="external"/><text x="465" y="642" text-anchor="middle" class="label">Google Places</text><text x="465" y="668" text-anchor="middle" class="small">ratings + reviews</text>
   <rect x="610" y="610" width="220" height="90" class="external"/><text x="720" y="642" text-anchor="middle" class="label">GTM → GA4</text><text x="720" y="668" text-anchor="middle" class="small">events + conversions</text>
   <rect x="870" y="610" width="210" height="90" class="external"/><text x="975" y="642" text-anchor="middle" class="label">Resend</text><text x="975" y="668" text-anchor="middle" class="small">contact email</text>
   <rect x="1120" y="610" width="210" height="90" class="external"/><text x="1225" y="642" text-anchor="middle" class="label">OpenAI</text><text x="1225" y="668" text-anchor="middle" class="small">AI enquiry assistant</text>

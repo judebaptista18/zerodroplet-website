@@ -14,4 +14,6 @@ export const serverEnv = {
   resendApiKey: process.env.RESEND_API_KEY,
   contactFromEmail: process.env.CONTACT_FROM_EMAIL,
   contactToEmail: process.env.CONTACT_TO_EMAIL,
+  googleFormsWebhookUrl: process.env.GOOGLE_FORMS_WEBHOOK_URL,
+  googleFormsWebhookSecret: process.env.GOOGLE_FORMS_WEBHOOK_SECRET,
 } as const;

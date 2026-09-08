@@ -45,5 +45,6 @@ export const publicEnv = {
   ),
   gtmId: process.env.NEXT_PUBLIC_GTM_ID,
   gaMeasurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID,
-  yotpoAppKey: process.env.NEXT_PUBLIC_YOTPO_APP_KEY,
+  googleReviewsUrl: process.env.NEXT_PUBLIC_GOOGLE_REVIEWS_URL,
+  googleWriteReviewUrl: process.env.NEXT_PUBLIC_GOOGLE_WRITE_REVIEW_URL,
 } as const;

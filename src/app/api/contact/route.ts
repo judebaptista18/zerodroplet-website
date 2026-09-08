@@ -25,6 +25,37 @@ export async function POST(request: Request) {
     return NextResponse.json({ok: true});
   }
 
+  // Google Forms takes precedence when either setting is present. Never silently
+  // fall back to demo/email delivery when this integration is misconfigured.
+  if (serverEnv.googleFormsWebhookUrl || serverEnv.googleFormsWebhookSecret) {
+    const url = serverEnv.googleFormsWebhookUrl;
+    const secret = serverEnv.googleFormsWebhookSecret;
+    if (!url || !secret || !/^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(url)) {
+      return NextResponse.json({error: 'The enquiry service is not configured'}, {status: 503});
+    }
+
+    try {
+      const {company: _honeypot, ...fields} = enquiry;
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({secret, enquiry: fields}),
+        signal: AbortSignal.timeout(15000),
+        cache: 'no-store',
+        redirect: 'follow',
+      });
+      // Apps Script can return HTTP 200 for application errors or login pages.
+      const result = response.ok ? await response.json() : null;
+      if (result?.ok !== true || typeof result.responseId !== 'string' || !result.responseId) {
+        throw new Error('Google Forms did not confirm submission');
+      }
+      return NextResponse.json({ok: true});
+    } catch {
+      console.error('Google Forms enquiry delivery failed');
+      return NextResponse.json({error: 'The enquiry could not be delivered'}, {status: 502});
+    }
+  }
+
   if (!serverEnv.resendApiKey) {
     return NextResponse.json({ok: true, demo: true});
   }
