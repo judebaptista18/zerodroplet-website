@@ -18,21 +18,40 @@ pnpm install
 pnpm dev
 ```
 
+## Configuration
+
+Non-sensitive values are version-controlled:
+
+- `src/lib/site-config.ts`: canonical production URL, contact details, social and map links, analytics IDs, Google Place ID and review links.
+- `src/lib/server-config.ts`: AI model and email sender/recipient. Email addresses are initially empty; configure them before enabling Resend.
+- `src/sanity/env.ts`: public Sanity project ID, dataset and API version.
+
+Edit these files and redeploy to change settings. The former `NEXT_PUBLIC_*`,
+`SANITY_STUDIO_*`, `OPENAI_MODEL`, `CONTACT_FROM_EMAIL`, `CONTACT_TO_EMAIL`, and
+`GOOGLE_PLACE_ID` environment variables are no longer read and can be removed
+from Amplify. The canonical site URL stays `https://zerodroplet.com` locally too,
+so metadata and sitemap links point to production.
+
+Only optional integration credentials and the server-side Google Forms receiver
+settings remain in `.env.example`. Copy it to `.env.local` for local development.
+On Amplify, server credentials also need runtime secret configuration; adding a
+Hosting build variable alone does not make it available to Next.js API routes.
+
 ## CMS setup
 1. Create a free Sanity project.
-2. Put project ID and dataset in `.env.local`.
+2. Set the public project ID, dataset and API version in `src/sanity/env.ts`.
 3. Run the standalone authoring environment with `pnpm studio:dev`.
 4. Create and publish `service` documents. The website reads published Sanity content and safely uses `src/lib/content.ts` when Sanity is not configured or unavailable.
 
-Copy `.env.example` to `.env.local` and fill in the project ID. The Studio runs
+The Studio shares the settings in `src/sanity/env.ts` and runs
 separately at `http://localhost:3333`; add both local and production website
 origins to the project's Sanity CORS settings.
 
 ## Integrations
 - To save enquiries to Google Forms with the current frontend, follow [Google Forms setup](integrations/google-forms/README.md). Includes the Apps Script receiver and server-only environment settings.
 - Follow [Google reviews setup](integrations/google-reviews/README.md) to enable live ratings, review cards and Google profile links.
-- Add `RESEND_API_KEY`, verified sender and destination email.
-- Add `OPENAI_API_KEY`; keep it server-side only.
+- Add `RESEND_API_KEY`; set the verified sender and destination email in `src/lib/server-config.ts`.
+- Add `OPENAI_API_KEY`; keep it server-side only. The model is configured in `src/lib/server-config.ts`.
 - Add rate limiting and CAPTCHA/Turnstile before public launch.
 
 ## Deployment recommendation
@@ -48,11 +67,11 @@ Recommended production setup:
 1. Create a GA4 property and web data stream.
 2. Create a Google Tag Manager web container.
 3. Add the GA4 Google tag inside GTM using the GA4 measurement ID.
-4. Set only `NEXT_PUBLIC_GTM_ID=GTM-XXXXXXX` in production.
+4. Set `gtmId` in `src/lib/site-config.ts` to your GTM container ID.
 5. In GTM, create a Custom Event trigger for `generate_lead` and use it for the GA4 lead conversion event.
 6. Test using GTM Preview and GA4 DebugView before publishing the container.
 
-Direct GA4 is also supported for simpler deployments by leaving the GTM variable empty and setting `NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX`. Do not configure both independently because that can duplicate page views.
+Direct GA4 is also supported for simpler deployments by leaving `gtmId` empty and setting `gaMeasurementId` in `src/lib/site-config.ts`. Do not configure both independently because that can duplicate page views.
 
 The contact form pushes these events:
 

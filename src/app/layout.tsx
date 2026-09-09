@@ -5,10 +5,10 @@ import {Header} from '@/components/Header';
 import {Footer} from '@/components/Footer';
 import {ChatWidget} from '@/components/ChatWidget';
 import {Analytics} from '@/components/Analytics';
-import {publicEnv} from '@/lib/env';
+import {siteConfig} from '@/lib/site-config';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(publicEnv.siteUrl),
+  metadataBase: new URL(siteConfig.siteUrl),
   title: {default: 'Zero Droplet | Water & Wastewater Treatment', template: '%s | Zero Droplet'},
   description: 'Water and wastewater treatment plants, products, engineering consultancy, operations and maintenance in Goa and across South India.',
   openGraph: {

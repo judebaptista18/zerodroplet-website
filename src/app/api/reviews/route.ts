@@ -1,3 +1,4 @@
+import {siteConfig} from '@/lib/site-config';
 import {NextResponse} from 'next/server';
 import {googlePlaceReviewsSchema} from '@/lib/google-reviews';
 
@@ -6,7 +7,7 @@ const headers = {'Cache-Control': 'private, no-store'};
 
 export async function GET() {
   const apiKey = process.env.GOOGLE_PLACES_API_KEY;
-  const placeId = process.env.GOOGLE_PLACE_ID;
+  const placeId = siteConfig.googlePlaceId;
   if (!apiKey || !placeId) {
     return NextResponse.json({available: false}, {headers});
   }

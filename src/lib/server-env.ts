@@ -1,19 +1,10 @@
 import 'server-only';
-
-function required(name: string, value: string | undefined): string {
-  if (!value) {
-    throw new Error(`Missing required environment variable: ${name}`);
-  }
-
-  return value;
-}
+import {serverConfig} from './server-config';
 
 export const serverEnv = {
+  ...serverConfig,
   openAiApiKey: process.env.OPENAI_API_KEY,
-  openAiModel: required('OPENAI_MODEL', process.env.OPENAI_MODEL),
   resendApiKey: process.env.RESEND_API_KEY,
-  contactFromEmail: process.env.CONTACT_FROM_EMAIL,
-  contactToEmail: process.env.CONTACT_TO_EMAIL,
   googleFormsWebhookUrl: process.env.GOOGLE_FORMS_WEBHOOK_URL,
   googleFormsWebhookSecret: process.env.GOOGLE_FORMS_WEBHOOK_SECRET,
 } as const;

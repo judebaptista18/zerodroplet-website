@@ -1,16 +1,16 @@
 import {GET} from './route';
 
+jest.mock('@/lib/site-config', () => ({siteConfig: {googlePlaceId: 'test-place'}}));
+
 jest.mock('next/server', () => ({NextResponse: {
   json: (body: unknown, init?: {status?: number; headers?: unknown}) => ({body, status: init?.status ?? 200, headers: init?.headers}),
 }}));
 const fetchMock = jest.fn();
 const originalKey = process.env.GOOGLE_PLACES_API_KEY;
-const originalPlace = process.env.GOOGLE_PLACE_ID;
 
 describe('Google reviews API', () => {
   beforeEach(() => {
     process.env.GOOGLE_PLACES_API_KEY = 'private-api-key';
-    process.env.GOOGLE_PLACE_ID = 'test-place';
     global.fetch = fetchMock;
     fetchMock.mockReset();
     jest.spyOn(console, 'error').mockImplementation(() => {});
@@ -18,8 +18,6 @@ describe('Google reviews API', () => {
   afterEach(() => {
     if (originalKey === undefined) delete process.env.GOOGLE_PLACES_API_KEY;
     else process.env.GOOGLE_PLACES_API_KEY = originalKey;
-    if (originalPlace === undefined) delete process.env.GOOGLE_PLACE_ID;
-    else process.env.GOOGLE_PLACE_ID = originalPlace;
     jest.restoreAllMocks();
   });
 

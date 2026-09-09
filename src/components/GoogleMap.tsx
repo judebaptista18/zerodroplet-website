@@ -1,14 +1,14 @@
 "use client";
 
 import {EnvironmentOutlined, MailOutlined} from '@ant-design/icons';
-import {publicEnv} from '@/lib/env';
+import {siteConfig} from '@/lib/site-config';
 
 export function GoogleMap() {
   return (
     <aside className="contactLocation" aria-labelledby="visit-us-heading">
       <div className="locationMap">
         <iframe
-          src={publicEnv.googleMapsEmbedUrl}
+          src={siteConfig.googleMapsEmbedUrl}
           title="Map showing the Zero Droplet office in Margao, Goa"
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
@@ -24,16 +24,16 @@ export function GoogleMap() {
         </div>
         <address>
           <EnvironmentOutlined aria-hidden="true" />
-          <span>{publicEnv.officeAddress}</span>
+          <span>{siteConfig.officeAddress}</span>
         </address>
-        <a className="locationEmail" href={`mailto:${publicEnv.contactEmail}`}>
+        <a className="locationEmail" href={`mailto:${siteConfig.contactEmail}`}>
           <MailOutlined aria-hidden="true" />
-          <span>{publicEnv.contactEmail}</span>
+          <span>{siteConfig.contactEmail}</span>
         </a>
         <div>
           <a
             className="directionsLink"
-            href={publicEnv.googleMapsDirectionsUrl}
+            href={siteConfig.googleMapsDirectionsUrl}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Get directions to Zero Droplet in Google Maps — opens in a new tab"

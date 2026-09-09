@@ -1,5 +1,5 @@
 import type {MetadataRoute} from 'next';
-import {publicEnv} from '@/lib/env';
+import {siteConfig} from '@/lib/site-config';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: `${publicEnv.siteUrl}/sitemap.xml`,
+    sitemap: `${siteConfig.siteUrl}/sitemap.xml`,
   };
 }

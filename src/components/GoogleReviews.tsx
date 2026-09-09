@@ -1,7 +1,7 @@
 'use client';
 
 import {useEffect, useRef, useState} from 'react';
-import {publicEnv} from '@/lib/env';
+import {siteConfig} from '@/lib/site-config';
 import type {GoogleReviewsData} from '@/lib/google-reviews';
 
 function Stars({rating}: {rating: number}) {
@@ -46,8 +46,8 @@ export function GoogleReviews() {
     return () => { controller.abort(); observer.disconnect(); };
   }, []);
 
-  const reviewsUrl = publicEnv.googleReviewsUrl || data?.googleMapsUri || publicEnv.googleMapsDirectionsUrl;
-  const writeUrl = publicEnv.googleWriteReviewUrl || data?.writeReviewUrl;
+  const reviewsUrl = siteConfig.googleReviewsUrl || data?.googleMapsUri || siteConfig.googleMapsDirectionsUrl;
+  const writeUrl = siteConfig.googleWriteReviewUrl || data?.writeReviewUrl;
   const reviews = data?.reviews || [];
 
   return (

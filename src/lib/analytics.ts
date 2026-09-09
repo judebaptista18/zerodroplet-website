@@ -11,14 +11,14 @@ declare global {
 export function trackEvent(event: string, payload: AnalyticsPayload = {}) {
   if (typeof window === "undefined") return;
 
-  if (publicEnv.gtmId) {
+  if (siteConfig.gtmId) {
     window.dataLayer = window.dataLayer ?? [];
     window.dataLayer.push({ event, ...payload });
     return;
   }
 
-  if (publicEnv.gaMeasurementId && window.gtag) {
+  if (siteConfig.gaMeasurementId && window.gtag) {
     window.gtag("event", event, payload);
   }
 }
-import {publicEnv} from '@/lib/env';
+import {siteConfig} from '@/lib/site-config';

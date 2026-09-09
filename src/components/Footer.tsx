@@ -7,28 +7,28 @@ import {
   LinkedinFilled,
   WhatsAppOutlined,
 } from '@ant-design/icons';
-import {publicEnv} from '@/lib/env';
+import {siteConfig} from '@/lib/site-config';
 
 export function Footer() {
   const socialLinks = [
     {
       label: 'Facebook',
-      href: publicEnv.facebookUrl,
+      href: siteConfig.facebookUrl,
       icon: <FacebookFilled />,
     },
     {
       label: 'Instagram',
-      href: publicEnv.instagramUrl,
+      href: siteConfig.instagramUrl,
       icon: <InstagramOutlined />,
     },
     {
       label: 'LinkedIn',
-      href: publicEnv.linkedinUrl,
+      href: siteConfig.linkedinUrl,
       icon: <LinkedinFilled />,
     },
     {
       label: 'WhatsApp',
-      href: publicEnv.whatsappUrl,
+      href: siteConfig.whatsappUrl,
       icon: <WhatsAppOutlined />,
     },
   ];
@@ -72,8 +72,8 @@ export function Footer() {
         </div>
         <div>
           <strong>Registered office</strong>
-          <p>{publicEnv.officeAddress}</p>
-          <p>{publicEnv.contactEmail}</p>
+          <p>{siteConfig.officeAddress}</p>
+          <p>{siteConfig.contactEmail}</p>
         </div>
       </div>
       <div className="container">

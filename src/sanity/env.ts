@@ -1,24 +1,6 @@
-function required(name: string, value: string | undefined): string {
-  if (!value) {
-    throw new Error(`Missing required environment variable: ${name}`);
-  }
-
-  return value;
-}
-
-export const apiVersion = required(
-  'SANITY_STUDIO_API_VERSION',
-  process.env.SANITY_STUDIO_API_VERSION,
-);
-
-export const dataset = required(
-  'SANITY_STUDIO_DATASET',
-  process.env.SANITY_STUDIO_DATASET,
-);
-
-export const projectId = required(
-  'SANITY_STUDIO_PROJECT_ID',
-  process.env.SANITY_STUDIO_PROJECT_ID,
-);
+// Public Sanity project settings shared by the website and Studio.
+export const apiVersion = "2026-07-29";
+export const dataset = "production";
+export const projectId = "wz33az8p";
 
 export const sanityConfigured = process.env.NODE_ENV !== 'test';

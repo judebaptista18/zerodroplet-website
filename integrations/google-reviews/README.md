@@ -8,24 +8,24 @@ invitation to visit the business profile without fabricated reviews or ratings.
 
 ## Configuration
 
-Add to `.env.local` and your hosting environment, then restart/redeploy:
+Add `GOOGLE_PLACES_API_KEY` to your server environment (`.env.local` locally).
+Never prefix the API key with `NEXT_PUBLIC_`.
 
-```dotenv
-# Server-only: never use NEXT_PUBLIC_ for the API key.
-GOOGLE_PLACES_API_KEY=
-GOOGLE_PLACE_ID=
+Set the non-secret values in `src/lib/site-config.ts`:
 
-# Optional public links; also work without API credentials.
-NEXT_PUBLIC_GOOGLE_REVIEWS_URL=
-NEXT_PUBLIC_GOOGLE_WRITE_REVIEW_URL=
-```
+- `googlePlaceId`: business Place ID.
+- `googleReviewsUrl`: optional public profile/reviews link.
+- `googleWriteReviewUrl`: optional direct write-review link.
+
+Redeploy after changing configuration. On Amplify, the API key must be available
+to the server runtime as well as the build environment.
 
 1. Enable **Places API (New)** in a Google Cloud project with billing enabled.
 2. Create a server API key restricted to Places API (New). Apply server IP
    restrictions if your hosting has fixed outbound IPs. Set API quotas and billing
    alerts appropriate for your website traffic.
 3. Find the business's [Place ID](https://developers.google.com/maps/documentation/places/web-service/place-id)
-   and set `GOOGLE_PLACE_ID` (the ID only, without a `places/` prefix).
+   and set `siteConfig.googlePlaceId` (the ID only, without a `places/` prefix).
 4. Optionally set the public Google profile/reviews URL and the **Ask for reviews**
    link from your Google Business Profile. With live data enabled, links are also
    supplied automatically. Without a reviews URL, the existing Google Maps

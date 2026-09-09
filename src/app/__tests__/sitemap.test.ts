@@ -1,6 +1,6 @@
 import sitemap from '@/app/sitemap';
 import {services} from '@/lib/content';
-import {publicEnv} from '@/lib/env';
+import {siteConfig} from '@/lib/site-config';
 
 jest.mock('@/sanity/lib/services', () => ({
   getServices: async () =>
@@ -12,11 +12,11 @@ describe('sitemap', () => {
     const entries = await sitemap();
     const urls = entries.map((entry) => entry.url);
 
-    expect(urls).toContain(publicEnv.siteUrl);
-    expect(urls).toContain(`${publicEnv.siteUrl}/contact`);
+    expect(urls).toContain(siteConfig.siteUrl);
+    expect(urls).toContain(`${siteConfig.siteUrl}/contact`);
 
     for (const service of services) {
-      expect(urls).toContain(`${publicEnv.siteUrl}/services/${service.slug}`);
+      expect(urls).toContain(`${siteConfig.siteUrl}/services/${service.slug}`);
     }
 
     expect(entries).toHaveLength(services.length + 2);
